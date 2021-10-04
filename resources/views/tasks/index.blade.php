@@ -60,7 +60,13 @@
 
                     <tr>
                         <td>{{ $task->title }}</td>
-                        <td><button class="btn btn-danger btn-sm">Delete</button></td>
+                        <td>
+                            <form action=" {{ route('task.destroy', $task->id) }}" method="POST">
+                                @csrf
+                                @method('delete')
+                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            </form>
+                        </td>
                     </tr>
 
                     @endforeach
