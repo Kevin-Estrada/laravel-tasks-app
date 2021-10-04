@@ -8,7 +8,9 @@ use App\Models\Task;
 class TaskController extends Controller
 {
     public function index(){
-        return view('tasks.index');
+        $tasks = Task::all();
+        // dd($tasks);
+        return view('tasks.index',compact('tasks'));
     }
 
     public function store(Request $request) {

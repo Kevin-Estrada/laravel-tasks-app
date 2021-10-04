@@ -17,7 +17,7 @@
                 {{ session()->get('msg') }}
             </div>
         @endif
-        
+
         <div class="card">
             <div class="card-header">
                 Add Task
@@ -51,12 +51,20 @@
                 <table class="table table-bordered">
                     <tr>
                         <th>Task</th>
-                        <th>Action</th>
+                        <th style="width: 2em">Action</th>
                     </tr>
+                    
+                    {{-- {{ dd($tasks) }} --}}
+
+                    @foreach ($tasks as $task)
+
                     <tr>
-                        <td>Task</td>
+                        <td>{{ $task->title }}</td>
                         <td><button class="btn btn-danger btn-sm">Delete</button></td>
                     </tr>
+
+                    @endforeach
+
                 </table>
             </div>
         </div>
