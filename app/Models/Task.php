@@ -8,6 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Task extends Model
 {
     use HasFactory;
-    protected $fillable = ['task'];
+    protected $fillable = ['title'];
+
+    public $timestamps = false;
 
 }
