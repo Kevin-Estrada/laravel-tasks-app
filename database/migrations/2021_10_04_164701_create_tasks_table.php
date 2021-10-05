@@ -14,8 +14,11 @@ class CreateTasksTable extends Migration
     public function up()
     {
         Schema::create('tasks', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('title');
+            $table->text('description')->nullable();
+            $table->enum('status', ['TODO','DONE'])->default('TODO');
+            // $table->timestamp('completed_at')->nullable();
             $table->timestamps();
         });
     }
