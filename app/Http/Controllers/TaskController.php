@@ -15,7 +15,7 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Task::get();
+        $tasks = Task::orderBy('id','desc')->get();
         return view('tasks.index', compact('tasks'));
     }
 
@@ -26,7 +26,19 @@ class TaskController extends Controller
      */
     public function create()
     {
-        return "Create";
+
+        $statuses = [
+            [
+                'label'=>'TODO',
+                'value'=>'TODO',
+            ],
+            [
+                'label'=>'DONE',
+                'value'=>'DONE',
+            ]
+        ];
+
+        return view('tasks.create',compact('statuses'));
     }
 
     /**
@@ -37,7 +49,16 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required'
+        ]);
+
+        $task = new Task();
+        $task->title = $request->title;
+        $task->description = $request->description;
+        $task->status = $request->status;
+        $task->save();
+        return redirect()->route('index');
     }
 
     /**
