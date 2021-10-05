@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 class CreateTasksTable extends Migration
@@ -18,8 +19,8 @@ class CreateTasksTable extends Migration
             $table->string('title');
             $table->text('description')->nullable();
             $table->enum('status', ['TODO','DONE'])->default('TODO');
-            // $table->timestamp('completed_at')->nullable();
-            $table->timestamps();
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
         });
     }
 
